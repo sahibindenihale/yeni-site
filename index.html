@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avis Oto Koç | Kurumsal Araç Kiralama</title>
+  <meta name="description" content="Kurumsal tasarıma sahip profesyonel araç kiralama sitesi. Araçlar ekonomikten lükse sıralı, WhatsApp rezervasyon ve kolay yönetilebilir config yapısı.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'avis-red': '#E52D27',
+            'avis-red-dark': '#8E1111',
+            'avis-red-soft': '#FF8D8D',
+            'ink': '#08111f'
+          },
+          boxShadow: {
+            glow: '0 18px 60px rgba(229,45,39,0.32)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root{--bg:#07111f;--card:#ffffff;--muted:#5b6575;--line:rgba(229,45,39,.15)}
+    *{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:linear-gradient(180deg,#09111e 0%,#0b1220 24%,#f8f8fb 24%,#f8f8fb 100%);color:#111827;overflow-x:hidden}
+    .mesh-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+    .mesh-bg::before,.mesh-bg::after{content:'';position:absolute;border-radius:9999px;filter:blur(90px);opacity:.55}
+    .mesh-bg::before{width:28rem;height:28rem;background:rgba(229,45,39,.28);top:-6rem;right:-8rem;animation:floaty 10s ease-in-out infinite}
+    .mesh-bg::after{width:20rem;height:20rem;background:rgba(255,255,255,.07);left:-5rem;top:7rem;animation:floaty 12s ease-in-out infinite reverse}
+    @keyframes floaty{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,18px,0)}}
+    .glass{background:rgba(255,255,255,.07);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.09)}
+    .nav-link::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:0;background:#E52D27;transition:.35s}
+    .nav-link:hover::after{width:100%}
+    .header-scrolled{box-shadow:0 15px 50px rgba(2,6,23,.28);border-color:rgba(255,255,255,.08)}
+    .hero-title{line-height:.95}
+    .hero-chip{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);backdrop-filter:blur(10px)}
+    .hero-cta{position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(229,45,39,.35)}
+    .hero-cta::before{content:'';position:absolute;inset:-2px;background:linear-gradient(120deg,transparent 25%,rgba(255,255,255,.42) 50%,transparent 75%);transform:translateX(-120%);animation:shine 3.8s linear infinite}
+    @keyframes shine{100%{transform:translateX(120%)}}
+    .pulse-call{animation:callGlow 1.8s ease-in-out infinite}
+    @keyframes callGlow{0%,100%{box-shadow:0 14px 35px rgba(229,45,39,.16)}50%{box-shadow:0 18px 44px rgba(229,45,39,.42)}}
+    .search-shell{background:linear-gradient(180deg,rgba(255,255,255,1),rgba(255,255,255,.92));box-shadow:0 30px 70px rgba(15,23,42,.08)}
+    .reveal{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s ease}
+    .reveal.is-visible{opacity:1;transform:translateY(0)}
+    .vehicle-card{isolation:isolate;transform-style:preserve-3d;transition:transform .4s ease, box-shadow .4s ease}
+    .vehicle-card:hover{transform:translateY(-8px)}
+    .card-ambient{position:absolute;inset:-1px;border-radius:30px;background:radial-gradient(circle at top right, rgba(229,45,39,.28), transparent 32%),radial-gradient(circle at bottom left, rgba(229,45,39,.15), transparent 26%);opacity:.95;z-index:0;pointer-events:none}
+    .vehicle-card::after{content:'';position:absolute;inset:auto 10% -24px 10%;height:60px;background:radial-gradient(circle, rgba(229,45,39,.24), transparent 70%);filter:blur(18px);opacity:0;transition:.35s;z-index:0}
+    .vehicle-card:hover::after{opacity:1}
+    .spec-chip{display:flex;align-items:center;justify-content:center;gap:.55rem;padding:.8rem .7rem;border-radius:18px;background:#f8fafc;border:1px solid #edf1f6;color:#475569;font-size:.84rem;font-weight:600}
+    .action-btn{display:flex;align-items:center;justify-content:center;gap:.65rem;border-radius:16px;padding:.95rem 1rem;font-weight:800;letter-spacing:.02em;transition:.25s}
+    .whatsapp-btn{background:#16a34a;color:#fff;box-shadow:0 16px 30px rgba(22,163,74,.22)}
+    .whatsapp-btn:hover{transform:translateY(-2px);background:#168a41}
+    .call-btn{background:linear-gradient(135deg,#E52D27,#8E1111);color:#fff}
+    .call-btn:hover{transform:translateY(-2px)}
+    .adv-card{position:relative;overflow:hidden}
+    .adv-card::before{content:'';position:absolute;inset:auto -40px -40px auto;width:120px;height:120px;background:radial-gradient(circle, rgba(229,45,39,.12), transparent 65%)}
+    .fixed-whatsapp{position:fixed;right:20px;bottom:-120px;z-index:80;transition:bottom .35s ease, transform .35s ease}
+    .fixed-whatsapp.show{bottom:22px}
+    .fixed-whatsapp a{box-shadow:0 18px 35px rgba(229,45,39,.35)}
+    .contact-shell{box-shadow:0 28px 70px rgba(15,23,42,.09)}
+    .dark-panel{background:linear-gradient(180deg,#0b1220 0%, #101828 100%)}
+    .footer-grid li+li{margin-top:.9rem}
+    @media (max-width: 768px){body{background:linear-gradient(180deg,#09111e 0%,#0b1220 18%,#f8f8fb 18%,#f8f8fb 100%)}.hero-title{font-size:2.8rem;line-height:1.02}.search-shell{padding:1rem}.vehicle-card:hover{transform:none}}
+  </style>
+</head>
+<body id="home">
+  <div class="fixed-whatsapp" id="whatsapp-fixed">
+    <a id="floating-support-link" href="#" class="w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-avis-red to-avis-red-dark text-white text-2xl" aria-label="Destek hattını ara" title="Destek Hattı">
+      <i class="fas fa-phone-alt"></i>
+    </a>
+  </div>
+
+  <header id="site-header" class="sticky top-0 z-50 border-b border-white/10 bg-[#09111edd]/90 backdrop-blur-xl transition duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between py-4">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-avis-red to-avis-red-dark text-white flex items-center justify-center shadow-glow"><span class="font-black text-xl">A</span></div>
+          <div>
+            <div id="brand-name" class="text-white font-extrabold tracking-wide text-xl">Avis Oto Koç</div>
+            <div id="brand-tagline" class="text-white/55 text-xs uppercase tracking-[0.28em]">Kurumsal Araç Kiralama Deneyimi</div>
+          </div>
+        </div>
+        <nav class="hidden lg:block">
+          <ul id="nav-list" class="flex items-center gap-8"></ul>
+        </nav>
+        <div class="hidden md:flex items-center gap-4">
+          <a id="header-phone-link" href="#" class="pulse-call inline-flex items-center gap-3 rounded-2xl px-5 py-3 bg-gradient-to-r from-avis-red to-avis-red-dark text-white font-extrabold shadow-glow"><i class="fas fa-phone-alt"></i></a>
+        </div>
+        <button id="mobile-menu-btn" class="lg:hidden text-white text-2xl"><i class="fas fa-bars"></i></button>
+      </div>
+      <div id="mobile-nav" class="hidden lg:hidden pb-5 border-t border-white/10">
+        <ul id="mobile-nav-list" class="grid gap-4 py-5"></ul>
+        <a id="mobile-phone-link" href="#" class="inline-flex items-center justify-center w-full rounded-2xl bg-gradient-to-r from-avis-red to-avis-red-dark text-white font-bold py-3"></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="relative overflow-hidden text-white">
+    <div class="mesh-bg"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-20 lg:pt-20 lg:pb-24">
+      <div class="grid lg:grid-cols-[1.05fr_.95fr] gap-10 items-center">
+        <div class="relative z-10">
+          <div class="hero-chip inline-flex items-center gap-3 rounded-full px-4 py-2 text-sm font-semibold text-white/85 mb-7">
+            <span class="w-2.5 h-2.5 rounded-full bg-avis-red animate-pulse"></span>
+            Profesyonel filo sunumu • premium rezervasyon deneyimi
+          </div>
+          <h1 class="hero-title text-[3.2rem] sm:text-[4.4rem] lg:text-[5.4rem] font-black tracking-[-0.05em] mb-6">
+            Kurumsal çizgide<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-avis-red-soft">güçlü araç kiralama</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-white/72 max-w-2xl leading-8 mb-8">Siteyi premium hissettiren koyu zemin, kırmızı ambiyans, hareketli CTA’lar ve güçlü araç kartlarıyla baştan toparladım. Araçlar hâlâ config üzerinden yönetiliyor; görünüm ise artık daha ciddi ve kurumsal.</p>
+          <div class="flex flex-wrap gap-4 mb-10">
+            <a href="#vehicles" class="hero-cta relative inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-avis-red to-avis-red-dark px-7 py-4 font-extrabold text-white"><i class="fas fa-car-side"></i> Filoyu İncele</a>
+            <a href="#contact" class="inline-flex items-center gap-3 rounded-2xl border border-white/15 px-7 py-4 font-bold text-white hover:bg-white/5 transition"><i class="fas fa-calendar-check"></i> Hızlı Rezervasyon</a>
+          </div>
+          <div id="stats-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
+        </div>
+        <div class="relative z-10 reveal is-visible">
+          <div class="absolute -inset-4 bg-gradient-to-br from-avis-red/25 via-transparent to-white/5 blur-3xl"></div>
+          <div class="relative rounded-[32px] overflow-hidden border border-white/10 shadow-[0_35px_100px_rgba(2,6,23,.45)] bg-white/5 backdrop-blur-xl">
+            <img id="hero-image" src="assets/hero.png" alt="Araç kiralama görseli" class="w-full h-[380px] lg:h-[520px] object-cover">
+            <div class="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-slate-950/85 to-transparent">
+              <div class="flex flex-wrap gap-3 text-xs uppercase tracking-[0.24em] text-white/65 mb-3">
+                <span>Kurumsal teslim</span><span>•</span><span>Premium görünüm</span><span>•</span><span>Aktif rezervasyon hattı</span>
+              </div>
+              <div class="text-2xl font-black text-white max-w-lg">Kurumsal dili güçlü, görsel etkisi yüksek bir karşılama deneyimi</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="vehicles" class="relative -mt-4 pb-16 lg:pb-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="search-shell rounded-[32px] border border-white/70 p-5 md:p-6 lg:p-8 mb-10 lg:mb-12 reveal is-visible">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-6">
+          <div>
+            <div class="text-sm uppercase tracking-[0.28em] text-avis-red font-bold mb-3">Araç Filosu</div>
+            <h2 class="text-3xl md:text-4xl font-black tracking-[-0.04em] text-slate-950">Ekonomikten lükse, tamamı tek vitrin içinde</h2>
+          </div>
+          <p class="text-slate-500 max-w-2xl">Arama ve filtre alanını korudum ama kutuyu da kurumsal bir kontrol paneli gibi görünür hale getirdim. Fiyat ve telefon güncellemesi yine sadece <strong>assets/js/config.js</strong> içinden yapılır.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-[1.45fr_.9fr_.8fr_.8fr] gap-4">
+          <div>
+            <label for="search-input" class="block text-sm font-bold text-slate-700 mb-2">Araç ara</label>
+            <input id="search-input" type="text" placeholder="Marka, model veya yakıt türü yazın" class="w-full h-14 rounded-2xl border border-slate-200 px-4 outline-none focus:border-avis-red transition">
+          </div>
+          <div>
+            <label for="category-filter" class="block text-sm font-bold text-slate-700 mb-2">Kategori</label>
+            <select id="category-filter" class="w-full h-14 rounded-2xl border border-slate-200 px-4 outline-none focus:border-avis-red transition"></select>
+          </div>
+          <button id="search-btn" class="h-14 rounded-2xl bg-gradient-to-r from-avis-red to-avis-red-dark text-white font-extrabold shadow-glow">Ara</button>
+          <button id="reset-btn" class="h-14 rounded-2xl border border-slate-200 bg-white text-slate-700 font-bold hover:border-avis-red hover:text-avis-red transition">Temizle</button>
+        </div>
+      </div>
+      <div id="vehicles-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8"></div>
+    </div>
+  </section>
+
+  <section id="advantages" class="py-16 lg:py-24 bg-[radial-gradient(circle_at_top,rgba(229,45,39,0.08),transparent_38%),linear-gradient(180deg,#fff,#f7f8fb)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-[.95fr_1.05fr] gap-10 items-start mb-12">
+        <div class="reveal">
+          <div class="text-sm uppercase tracking-[0.28em] text-avis-red font-bold mb-3">Kurumsal Ayrıcalıklar</div>
+          <h2 class="text-3xl md:text-4xl font-black tracking-[-0.04em] text-slate-950 mb-5">Düz değil, güven veren bir marka dili</h2>
+          <p class="text-slate-600 leading-8 text-lg">Burayı bilerek daha ciddi tuttum: premium kırmızı vurgular, net tipografi, teslim standardı dili ve güven hissi veren bloklarla site artık "şablon" gibi değil, kurumsal bir araç kiralama vitrini gibi duruyor.</p>
+          <div class="mt-8 grid sm:grid-cols-2 gap-4">
+            <div class="rounded-3xl dark-panel p-6 text-white shadow-[0_22px_70px_rgba(2,6,23,.18)]">
+              <div class="text-4xl font-black mb-2">%100</div>
+              <div class="text-white/65">WhatsApp entegre rezervasyon akışı</div>
+            </div>
+            <div class="rounded-3xl border border-red-100 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,.05)]">
+              <div class="text-4xl font-black text-slate-950 mb-2">Tek Nokta</div>
+              <div class="text-slate-500">Telefon, fiyat ve araç yönetimi config üzerinden</div>
+            </div>
+          </div>
+        </div>
+        <div id="features-grid" class="grid sm:grid-cols-2 gap-5"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="pb-20 lg:pb-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="contact-shell overflow-hidden rounded-[36px] border border-red-100 bg-white">
+        <div class="grid lg:grid-cols-[.92fr_1.08fr]">
+          <div class="dark-panel text-white p-8 md:p-10 lg:p-12 relative overflow-hidden">
+            <div class="absolute -right-12 -top-12 w-44 h-44 rounded-full bg-avis-red/20 blur-3xl"></div>
+            <div class="relative z-10">
+              <div class="text-sm uppercase tracking-[0.28em] text-avis-red-soft font-bold mb-4">İletişim</div>
+              <h3 class="text-3xl md:text-4xl font-black tracking-[-0.04em] mb-8">Hızlı rezervasyon için tek hat yeterli</h3>
+              <div class="space-y-6 text-white/80">
+                <div class="flex gap-4 items-start"><div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center"><i class="fas fa-phone-alt"></i></div><div><div class="font-bold text-white mb-1">Telefon</div><a id="contact-phone-link" href="#" class="hover:text-white"></a></div></div>
+                <div class="flex gap-4 items-start"><div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center"><i class="fab fa-whatsapp"></i></div><div><div class="font-bold text-white mb-1">WhatsApp</div><a id="contact-whatsapp-link" href="#" target="_blank" class="hover:text-white"></a></div></div>
+                <div class="flex gap-4 items-start"><div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center"><i class="fas fa-shield-alt"></i></div><div><div class="font-bold text-white mb-1">Teslim Standartı</div><p>Temiz teslim, kontrol edilmiş evrak ve kurumsal iletişim.</p></div></div>
+                <div class="flex gap-4 items-start"><div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center"><i class="fas fa-clock"></i></div><div><div class="font-bold text-white mb-1">Çalışma Düzeni</div><p>Hafta içi ve hafta sonu rezervasyon taleplerine hızlı dönüş.</p></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="p-8 md:p-10 lg:p-12 bg-[linear-gradient(180deg,#fff,#fff7f7)]">
+            <div class="text-sm uppercase tracking-[0.28em] text-avis-red font-bold mb-3">Formdan WhatsApp’a</div>
+            <h3 class="text-3xl md:text-4xl font-black tracking-[-0.04em] text-slate-950 mb-4">Rezervasyon talebini anında ilet</h3>
+            <p class="text-slate-500 mb-8">Form gönderildiğinde bilgiler otomatik olarak WhatsApp mesajına dönüştürülür. Ekstra panel yok, direkt sıcak lead akışı var.</p>
+            <form id="contact-form" class="grid md:grid-cols-2 gap-5">
+              <div class="md:col-span-1"><label for="name" class="block text-sm font-bold text-slate-700 mb-2">Ad Soyad</label><input id="name" type="text" required class="w-full h-14 rounded-2xl border border-slate-200 px-4 outline-none focus:border-avis-red transition"></div>
+              <div class="md:col-span-1"><label for="phone" class="block text-sm font-bold text-slate-700 mb-2">Telefon</label><input id="phone" type="tel" required class="w-full h-14 rounded-2xl border border-slate-200 px-4 outline-none focus:border-avis-red transition"></div>
+              <div class="md:col-span-2"><label for="vehicle" class="block text-sm font-bold text-slate-700 mb-2">İlgilendiğiniz Araç</label><select id="vehicle" class="w-full h-14 rounded-2xl border border-slate-200 px-4 outline-none focus:border-avis-red transition"></select></div>
+              <div class="md:col-span-2"><label for="message" class="block text-sm font-bold text-slate-700 mb-2">Notunuz</label><textarea id="message" rows="5" class="w-full rounded-3xl border border-slate-200 px-4 py-4 outline-none focus:border-avis-red transition"></textarea></div>
+              <div class="md:col-span-2"><button type="submit" class="w-full h-14 rounded-2xl bg-gradient-to-r from-avis-red to-avis-red-dark text-white font-extrabold shadow-glow">WhatsApp ile Gönder</button></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="dark-panel text-white py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-10">
+      <div>
+        <div class="flex items-center gap-4 mb-5"><div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-avis-red to-avis-red-dark flex items-center justify-center shadow-glow"><span class="font-black">A</span></div><div><div id="footer-brand-name" class="font-extrabold text-xl">Avis Oto Koç</div><div class="text-white/45 text-xs uppercase tracking-[0.28em]">Kurumsal araç kiralama</div></div></div>
+        <p class="text-white/55 leading-7">Kurumsal duruşu güçlendirilmiş, animasyonları ve ambiyansı artırılmış premium araç kiralama vitrini.</p>
+      </div>
+      <div>
+        <div class="font-bold text-white mb-5">Bağlantılar</div>
+        <ul id="footer-links" class="footer-grid"></ul>
+      </div>
+      <div>
+        <div class="font-bold text-white mb-5">Araç Kategorileri</div>
+        <ul id="vehicle-categories" class="footer-grid"></ul>
+      </div>
+      <div>
+        <div class="font-bold text-white mb-5">Hızlı İletişim</div>
+        <div class="space-y-4 text-white/65">
+          <a id="footer-phone-link" href="tel:05555555555" class="block hover:text-white transition">0555 555 55 55</a>
+          <a id="footer-wa-link" href="#contact" class="block hover:text-white transition">Rezervasyon formu</a>
+          <div>© 2026 Avis Oto Koç. Tüm hakları saklıdır.</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const fp=document.getElementById('footer-phone-link'); if(fp){fp.href='tel:'+CONFIG.phone; fp.textContent=CONFIG.displayPhone;}
+    })
+  </script>
+</body>
+</html>
