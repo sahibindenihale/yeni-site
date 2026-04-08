@@ -74,7 +74,7 @@
 </head>
 <body id="home">
   <div class="fixed-whatsapp" id="whatsapp-fixed">
-    <a id="floating-support-link" href="#" class="w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-avis-red to-avis-red-dark text-white text-2xl" aria-label="Destek hattını ara" title="Destek Hattı">
+    <a id="floating-support-link" href="#" class="w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-avis-red to-avis-red-dark text-white text-2xl" aria-label="Destek hattını ara" title="Hemen Ara">
       <i class="fas fa-phone-alt"></i>
     </a>
   </div>
@@ -242,7 +242,7 @@
         <div class="font-bold text-white mb-5">Hızlı İletişim</div>
         <div class="space-y-4 text-white/65">
           <a id="footer-phone-link" href="tel:05555555555" class="block hover:text-white transition">0555 555 55 55</a>
-          <a id="footer-wa-link" href="#contact" class="block hover:text-white transition">Rezervasyon formu</a>
+          <a id="footer-wa-link" href="#contact" class="block hover:text-white transition">WhatsApp: 0551 352 96 75</a>
           <div>© 2026 Avis Oto Koç. Tüm hakları saklıdır.</div>
         </div>
       </div>
@@ -254,6 +254,7 @@
   <script>
     document.addEventListener('DOMContentLoaded',()=>{
       const fp=document.getElementById('footer-phone-link'); if(fp){fp.href='tel:'+CONFIG.phone; fp.textContent=CONFIG.displayPhone;}
+      const fwa=document.getElementById('footer-wa-link'); if(fwa){fwa.href='https://wa.me/'+(CONFIG.whatsapp||CONFIG.phone)+'?text='+encodeURIComponent(CONFIG.whatsappBaseMessage); fwa.textContent='WhatsApp: '+(CONFIG.displayWhatsapp||CONFIG.displayPhone); fwa.target='_blank';}
     })
   </script>
 </body>

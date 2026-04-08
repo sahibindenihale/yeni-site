@@ -3,7 +3,21 @@ function telHref(phone) {
 }
 
 function waHref(message) {
-  return `https://wa.me/${CONFIG.phone}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${CONFIG.whatsapp || CONFIG.phone}?text=${encodeURIComponent(message)}`;
+}
+
+function isLuxuryVehicle(vehicle) {
+  const luxuryCategories = new Set(['Premium SUV']);
+  const luxuryNames = new Set([
+    'Audi A6', 'Audi Q5', 'BMW 320d', 'BMW 420i', 'BMW 520i', 'BMW X5',
+    'Mercedes CLA 200', 'Mercedes E200', 'Tesla', 'Porsche Taycan',
+    'Range Rover Sport', 'Range Rover Velar', 'BYD Seal', 'Jaecoo J7'
+  ]);
+  return luxuryCategories.has(vehicle.category) || luxuryNames.has(vehicle.name);
+}
+
+function getDepositFee(vehicle) {
+  return isLuxuryVehicle(vehicle) ? '₺5.000' : '₺4.500';
 }
 
 function categoryRank(category) {
@@ -90,9 +104,19 @@ function renderVehicleCards(items) {
           <div class="spec-chip"><i class="fas fa-cog text-avis-red"></i><span>${vehicle.transmission}</span></div>
         </div>
 
-        <ul class="space-y-2.5 mb-7 text-sm text-slate-600">
+        <ul class="space-y-2.5 mb-5 text-sm text-slate-600">
           ${vehicle.features.map(feature => `<li class="flex items-start"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-50 text-avis-red mr-3 mt-0.5"><i class="fas fa-check text-[10px]"></i></span><span>${feature}</span></li>`).join('')}
         </ul>
+
+        <div class="mb-6 rounded-2xl border border-red-100 bg-gradient-to-r from-red-50 to-white px-4 py-3">
+          <div class="flex items-center justify-between gap-3">
+            <div>
+              <div class="text-xs uppercase tracking-[0.22em] text-avis-red font-extrabold">Depozito Ücreti</div>
+              <div class="text-lg font-black text-slate-900">${getDepositFee(vehicle)}</div>
+            </div>
+            <div class="text-right text-xs font-semibold ${isLuxuryVehicle(vehicle) ? 'text-amber-600' : 'text-slate-500'}">${isLuxuryVehicle(vehicle) ? 'Lüks araç depozitosu' : 'Standart araç depozitosu'}</div>
+          </div>
+        </div>
 
         <div class="grid grid-cols-2 gap-3">
           <a href="${waHref('Merhaba, ' + vehicle.name + ' aracı için detaylı bilgi almak istiyorum.')}" target="_blank" class="action-btn whatsapp-btn">
@@ -142,7 +166,7 @@ function applyContactInfo() {
   document.getElementById('mobile-phone-link').href = telHref(CONFIG.phone);
   document.getElementById('contact-phone-link').textContent = CONFIG.displayPhone;
   document.getElementById('contact-phone-link').href = telHref(CONFIG.phone);
-  document.getElementById('contact-whatsapp-link').textContent = CONFIG.displayPhone;
+  document.getElementById('contact-whatsapp-link').textContent = CONFIG.displayWhatsapp || CONFIG.displayPhone;
   document.getElementById('contact-whatsapp-link').href = waHref(CONFIG.whatsappBaseMessage);
   document.getElementById('floating-support-link').href = telHref(CONFIG.phone);
   document.getElementById('hero-image').src = CONFIG.heroImage;
